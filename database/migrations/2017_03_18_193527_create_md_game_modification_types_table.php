@@ -15,9 +15,9 @@ class CreateMdGameModificationTypesTable extends Migration
     {
         Schema::create('md_game_modification_types', function (Blueprint $table) {
             $table->increments('game_modification_type_id');
-            $table->string('modification_name');
+            $table->string('modification_type_name');
 
-            $table->unique('modification_name');
+            $table->unique('modification_type_name');
         });
     }
 

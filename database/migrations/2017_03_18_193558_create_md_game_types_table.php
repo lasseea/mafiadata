@@ -13,7 +13,12 @@ class CreateMdGameTypesTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('md_game_types', function (Blueprint $table) {
+            $table->increments('game_type_id');
+            $table->string('game_type_name');
+
+            $table->unique('game_type_name');
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class CreateMdGameTypesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('md_game_types');
     }
 }

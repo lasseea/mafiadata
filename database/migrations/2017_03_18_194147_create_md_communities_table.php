@@ -13,7 +13,11 @@ class CreateMdCommunitiesTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('md_communities', function (Blueprint $table) {
+            $table->increments('community_id');
+            $table->string('community_name');
+            $table->string('community_link');
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class CreateMdCommunitiesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('md_communities');
     }
 }

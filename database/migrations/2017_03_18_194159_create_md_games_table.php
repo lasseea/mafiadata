@@ -13,7 +13,23 @@ class CreateMdGamesTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('md_games', function (Blueprint $table) {
+            $table->increments('game_id');
+            $table->integer('game_community')->unsigned();
+            $table->string('game_title');
+            $table->string('game_thread_url');
+            $table->integer('game_type')->unsigned();
+            $table->integer('game_total_post_count')->unsigned();
+            $table->string('game_description');
+            $table->integer('day_length')->unsigned();
+            $table->integer('night_length')->unsigned();
+            $table->date('game_start_date');
+            $table->string('game_data_managed_by');
+            $table->timestamps();
+
+            $table->foreign('game_community')->references('community_id')->on('md_communities')->onDelete('cascade');
+            $table->foreign('game_type')->references('game_type_id')->on('md_game_types')->onDelete('cascade');
+        });
     }
 
     /**
@@ -23,6 +39,6 @@ class CreateMdGamesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('md_games');
     }
 }

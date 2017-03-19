@@ -13,7 +13,13 @@ class CreateMdGameActionTargetsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('md_game_action_targets', function (Blueprint $table) {
+            $table->increments('game_action_target_id');
+            $table->integer('game_action_id')->unsigned();
+            $table->string('target_username');
+
+            $table->foreign('game_action_id')->references('game_action_id')->on('md_game_actions')->onDelete('cascade');
+        });
     }
 
     /**
@@ -23,6 +29,6 @@ class CreateMdGameActionTargetsTable extends Migration
      */
     public function down()
     {
-        //
+        schema::drop('md_game_action_targets');
     }
 }

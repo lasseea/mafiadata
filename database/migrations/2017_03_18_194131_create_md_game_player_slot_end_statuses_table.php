@@ -13,7 +13,11 @@ class CreateMdGamePlayerSlotEndStatusesTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('md_game_player_slot_end_statuses', function (Blueprint $table) {
+            $table->increments('game_player_slot_end_status_id');
+            $table->string('status_name');
+            $table->boolean('alive_or_dead');
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class CreateMdGamePlayerSlotEndStatusesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('md_game_player_slot_end_statuses');
     }
 }

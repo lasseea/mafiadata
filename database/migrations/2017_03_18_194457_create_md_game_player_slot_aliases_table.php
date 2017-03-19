@@ -13,7 +13,13 @@ class CreateMdGamePlayerSlotAliasesTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('md_game_player_slot_aliases', function (Blueprint $table) {
+            $table->integer('game_player_slot_id')->unsigned();
+            $table->string('alias_name');
+
+            $table->primary('game_player_slot_id');
+            $table->foreign('game_player_slot_id')->references('game_player_slot_id')->on('md_game_player_slots')->onDelete('cascade');
+        });
     }
 
     /**
@@ -23,6 +29,6 @@ class CreateMdGamePlayerSlotAliasesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('md_game_player_slot_aliases');
     }
 }

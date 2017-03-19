@@ -13,7 +13,12 @@ class CreateMdGameHostTypesTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('md_game_host_types', function (Blueprint $table) {
+            $table->increments('game_host_type_id');
+            $table->string('game_host_type_name');
+
+            $table->unique('game_host_type_name');
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class CreateMdGameHostTypesTable extends Migration
      */
     public function down()
     {
-        //
+        schema::drop('md_game_host_types');
     }
 }
