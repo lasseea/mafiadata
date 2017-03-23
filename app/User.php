@@ -26,4 +26,18 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //sets name of users to uppercase of first letter
+    public function setNameAttribute($value){
+        $this->attributes['name'] = ucfirst($value);
+    }
+
+    public function setPasswordAttribute($value) {
+        $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function isAdmin()
+    {
+        return $this->is_admin; //this is used for admin auth
+    }
 }

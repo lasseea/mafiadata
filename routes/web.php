@@ -18,3 +18,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+//Route group for admin pages
+Route::group(['middleware' => 'admin'], function (){
+    //Insert game routes
+    Route::get('/insert', 'InsertGameController@index');
+
+    //Update game routes
+    Route::get('/update', 'UpdateGameController@index');
+});
