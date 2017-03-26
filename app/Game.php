@@ -14,6 +14,8 @@ class Game extends Model
         'game_title',
         'game_thread_url',
         'game_type',
+        'game_setup',
+        'normal_or_turbo',
         'game_total_post_count',
         'game_description',
         'day_length',
