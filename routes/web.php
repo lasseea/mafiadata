@@ -27,3 +27,7 @@ Route::group(['middleware' => 'admin'], function (){
     //Update game routes
     Route::get('/update', 'UpdateGameController@index');
 });
+
+//Routes for test of datatables
+Route::get('/datatable', ['uses'=>'PostController@datatable']);
+Route::get('/datatable/getposts', ['as'=>'datatable.getposts','uses'=>'PostController@getPosts']);
