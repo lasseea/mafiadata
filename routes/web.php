@@ -28,6 +28,9 @@ Route::group(['middleware' => 'admin'], function (){
     Route::get('/update', 'UpdateGameController@index');
 });
 
+//Routes for game data
+Route::get('/aggregatestats', 'GameDataController@aggregatestats');
+
 //Routes for test of datatables
 Route::get('/datatable', ['uses'=>'PostController@datatable']);
 Route::get('/datatable/getposts', ['as'=>'datatable.getposts','uses'=>'PostController@getPosts']);

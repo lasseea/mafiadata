@@ -13,6 +13,6 @@ class UpdateGameController extends Controller
 
     public function index()
     {
-        return view('updategame/updategame');
+        return view('auth/updategame/updategame');
     }
 }

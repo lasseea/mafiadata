@@ -13,6 +13,6 @@ class InsertGameController extends Controller
 
     public function index()
     {
-        return view('insertgame/insertgame');
+        return view('auth/insertgame/insertgame');
     }
 }
