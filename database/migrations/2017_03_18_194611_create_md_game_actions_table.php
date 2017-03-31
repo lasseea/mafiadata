@@ -16,6 +16,7 @@ class CreateMdGameActionsTable extends Migration
         Schema::create('md_game_actions', function (Blueprint $table) {
             $table->increments('game_action_id');
             $table->string('action_user');
+            $table->string('action_target');
             $table->string('action_name');
             $table->integer('game_id')->unsigned();
             $table->boolean('night_or_day');

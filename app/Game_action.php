@@ -11,6 +11,7 @@ class Game_action extends Model
     protected $fillable = [
         'game_action_id',
         'action_user',
+        'action_target',
         'action_name',
         'game_id',
         'night_or_day',
