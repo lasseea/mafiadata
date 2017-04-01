@@ -18,6 +18,8 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+    <!-- javascript functions for the insert form -->
+    <script src="{{ asset('js/insertformmethods.js') }}"></script>
 </head>
 <body>
     <div id="app">
