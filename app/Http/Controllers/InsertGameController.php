@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App;
+use DB;
 
 class InsertGameController extends Controller
 {
@@ -13,6 +15,7 @@ class InsertGameController extends Controller
 
     public function index()
     {
-        return view('auth/insertgame/insertgame');
+        $gamemodificationtypes = App\Game_modification_type::all();
+        return view('auth/insertgame/insertgame', compact('gamemodificationtypes'));
     }
 }
