@@ -78,6 +78,12 @@
                 <p>Write here if you want to leave a short comment about the game.</p>
                 <textarea rows="2" cols="50" name="description" id="description" class="form-control"></textarea>
             </div>
+            <!-- GAME MAIN HOST -->
+            <div class="form-group">
+                <p><b>Hosts:</b></p>
+                <label for="mainhost">Main Host:</label>
+                <input type="text" id="mainhost" name="mainhost" class="form-control" placeholder="Enter username" required>
+            </div>
             <!-- BUTTONS TO ADD/REMOVE HOSTS-->
             <div class="form-group">
                 <button class="button btn-success" id="addhost" name="addhost" onclick="addHost()">Add host</button>
@@ -85,7 +91,17 @@
             <!-- DIV FOR ADDED HOSTS TO APPEAR -->
             <div id="hostdiv">
 
+            </div><br>
+            <!-- BUTTONS TO ADD/REMOVE TEAMS-->
+            <div class="form-group">
+                <p><b>Teams:</b></p>
+                <button class="button btn-success" id="addteam" name="addteam" onclick="addTeam()">Add team</button>
             </div>
+            <!-- DIV FOR ADDED HOSTS TO APPEAR -->
+            <div id="teamdiv">
+
+            </div><br>
+
         </form>
     </div>
 

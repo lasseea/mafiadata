@@ -16,6 +16,8 @@ class InsertGameController extends Controller
     public function index()
     {
         $gamemodificationtypes = App\Game_modification_type::all();
-        return view('auth/insertgame/insertgame', compact('gamemodificationtypes'));
+        $gameteamtypes = json_encode(App\Game_team_type::all());
+        $gameresulttypes = json_encode(App\Game_result_type::all());
+        return view('auth/insertgame/insertgame', compact('gamemodificationtypes', 'gameteamtypes', 'gameresulttypes'));
     }
 }

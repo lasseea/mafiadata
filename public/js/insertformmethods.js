@@ -2,17 +2,18 @@
  * Created by leadk on 4/1/2017.
  */
 
+//HOST METHODS
 var hostCount = 1;
-var maxHosts = 20;
+var maxHosts = 25;
 
 function addHost() {
     if(hostCount>maxHosts){
-        alert('Max 20 hosts allowed per game')
+        alert('Max '+ maxHosts +' hosts allowed per game')
     } else {
-        var newCoHostDiv = $(document.createElement('div'))
+        var newHostDiv = $(document.createElement('div'))
             .attr("id", 'hostdiv' + hostCount);
 
-        newCoHostDiv.after().html(
+        newHostDiv.after().html(
             '<label>Username: </label>' +
             '<input type="text" name="hostusername' + hostCount + '" id="hostusername' + hostCount + '" value="" required >' +
             ' ' +
@@ -22,20 +23,19 @@ function addHost() {
             '<button class="button btn-danger" id="removehost' + hostCount + '" name="removehost' + hostCount + '" onclick="removeHost('+hostCount+')">X</button>'
         );
 
-        newCoHostDiv.appendTo("#hostdiv");
+        newHostDiv.appendTo("#hostdiv");
         hostCount++;
     }
 }
 
 function removeHost(hostNumber) {
-    alert('test');
     if(hostCount==1){
         alert("Error - No host to remove");
         return false;
     }
     hostCount--;
     $("#hostdiv"+hostNumber).remove();
-    for (i=hostNumber; i < 20 ; i++) {
+    for (i=hostNumber; i <= maxHosts ; i++) {
         var count = i-1;
         $("#hostdiv"+i).attr("id", 'hostdiv' + count);
         $("#hostusername"+i).attr("name", 'hostusername' + count);
@@ -48,3 +48,62 @@ function removeHost(hostNumber) {
     }
 }
 
+//TEAM METHODS
+var teamCount = 1;
+var maxTeams = 50;
+
+function addTeam(teamTypes, teamResultTypes) {
+    if(teamCount>maxTeams){
+        alert('Max '+ maxTeams +' teams allowed per game')
+    } else {
+        var newTeamDiv = $(document.createElement('div'))
+            .attr("id", 'teamdiv' + teamCount);
+
+        newTeamDiv.after().html(
+            '<label>Team name: </label>' +
+            '<input type="text" name="teamname' + teamCount + '" id="teamname' + teamCount + '" value="" placeholder="May be same as type" required >' +
+            ' ' +
+            '<label> Type: </label>' +
+            '<select name="teamtype' + teamCount + '" id="teamtype' + teamCount + '">' +
+            '<option value="Town">Town</option>' +
+            '<option value="Mafia">Mafia</option>' +
+            '<option value="Third Party">Third Party</option>' +
+            '</select>' +
+            ' ' +
+            '<label>Team Result: </label>' +
+            '<select name="teamresulttype' + teamCount + '" id="teamresulttype' + teamCount + '">' +
+            '<option value="Won">Won</option>' +
+            '<option value="Lost">Lost</option>' +
+            '<option value="Draw">Draw</option>' +
+            '<option value="Null">Null</option>' +
+            '</select>' +
+            ' ' +
+            '<button class="button btn-danger" id="removeteam' + teamCount + '" name="removeteam' + teamCount + '" onclick="removeTeam(' + teamCount + ')">X</button>'
+        );
+
+        newTeamDiv.appendTo("#teamdiv");
+        teamCount++;
+    }
+}
+
+function removeTeam(teamNumber) {
+    if(teamCount==1){
+        alert("Error - No team to remove");
+        return false;
+    }
+    teamCount--;
+    $("#teamdiv"+teamNumber).remove();
+    for (i=teamNumber; i <= maxTeams ; i++) {
+        var count = i-1;
+        $("#teamdiv"+i).attr("id", 'teamdiv' + count);
+        $("#teamusername"+i).attr("name", 'teamname' + count);
+        $("#teamusername"+i).attr("id", 'teamname' + count);
+        $("#teamtype"+i).attr("name", 'teamtype' + count);
+        $("#teamtype"+i).attr("id", 'teamtype' + count);
+        $("#teamresulttype"+i).attr("name", 'teamresulttype' + count);
+        $("#teamresulttype"+i).attr("id", 'teamresulttype' + count);
+        $("#removeteam"+i).attr("onclick", 'removeTeam('+ count +')');
+        $("#removeteam"+i).attr("name", 'removeteam' + count);
+        $("#removeteam"+i).attr("id", 'removeteam' + count);
+    }
+}
