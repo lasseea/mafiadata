@@ -111,9 +111,7 @@
                 <br>
                 <button id="addplayerslot" name="addplayerslot" class="btn-success" onclick="addPlayerSlot()">Add player slot</button>
             </div>
-            <!-- DIV FOR ADDED PLAYER SLOTS TO APPEAR -->
-            <div id="playerslotdiv">
-            </div><br>
+            <!-- TABLE FOR ADDED PLAYER SLOTS TO APPEAR -->
             <table id="allplayerslotstable" class="table">
                 <thead>
                     <tr>
@@ -127,9 +125,9 @@
                     </tr>
                 </thead>
                 <tbody id="allplayerslotsbody">
-
                 </tbody>
             </table>
+            <br>
         </form>
     </div>
 

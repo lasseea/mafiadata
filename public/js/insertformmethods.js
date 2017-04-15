@@ -116,24 +116,6 @@ function addPlayerSlot() {
             .attr("id", 'playerslotrow' + slotCount);
 
         newPlayerSlotRow.after().html(
-            /*
-            '<label>Player:</label>' +
-            '<input type="text" id="player'+ slotCount +'" name="player'+ slotCount +'" placeholder="Enter player name here" required>' +
-            ' ' +
-            '<label>Team: </label>'+
-            '<input type="text" name="slotteam' + slotCount + '" id="slotteam' + slotCount + '" placeholder="C/P team name here" required >' +
-            ' ' +
-            '<label>Role:</label>' +
-
-            ' ' +
-            '<label>End status:</label>' +
-
-            ' ' +
-            '<label>Alias:</label>' +
-
-            ' ' +
-
-            */
             '<td><input type="text" id="player'+ slotCount +'" name="player'+ slotCount +'" placeholder="Enter player name here" required></td>' +
             '<td><input type="text" name="slotteam' + slotCount + '" id="slotteam' + slotCount + '" placeholder="C/P team name here" required></td>' +
             '<td><input type="text" name="slotrole' + slotCount + '" id="slotrole' + slotCount + '" value="Vanilla" placeholder="Enter role name here" required></td>' +
@@ -162,5 +144,29 @@ function addPlayerSlot() {
 }
 
 function removePlayerSlot(playerSlotNumber) {
-
+    if(slotCount==1){
+        alert("Error - No player slot to remove");
+        return false;
+    }
+    slotCount--;
+    $("#playerslotrow"+playerSlotNumber).remove();
+    for (i=playerSlotNumber; i <= maxSlots ; i++) {
+        var count = i-1;
+        $("#playerslotrow"+i).attr("id", 'playerslotrow' + count);
+        $("#player"+i).attr("name", 'player' + count);
+        $("#player"+i).attr("id", 'player' + count);
+        $("#slotteam"+i).attr("name", 'slotteam' + count);
+        $("#slotteam"+i).attr("id", 'slotteam' + count);
+        $("#slotrole"+i).attr("name", 'slotrole' + count);
+        $("#slotrole"+i).attr("id", 'slotrole' + count);
+        $("#slotstatus"+i).attr("name", 'slotstatus' + count);
+        $("#slotstatus"+i).attr("id", 'slotstatus' + count);
+        $("#alias"+i).attr("name", 'alias' + count);
+        $("#alias"+i).attr("id", 'alias' + count);
+        $("#secondplayer"+i).attr("name", 'secondplayer' + count);
+        $("#secondplayer"+i).attr("id", 'secondplayer' + count);
+        $("#removeplayerslot"+i).attr("name", 'removeplayerslot' + count);
+        $("#removeplayerslot"+i).attr("onclick", 'removePlayerSlot('+ count +')');
+        $("#removeplayerslot"+i).attr("id", 'removeplayerslot' + count);
+    }
 }
