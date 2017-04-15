@@ -80,9 +80,9 @@
             </div>
             <!-- GAME MAIN HOST -->
             <div class="form-group">
-                <p><b>Hosts:</b></p>
+                <h4><b>Hosts:</b></h4>
                 <label for="mainhost">Main Host:</label>
-                <input type="text" id="mainhost" name="mainhost" class="form-control" placeholder="Enter username" required>
+                <input type="text" id="mainhost" name="mainhost" placeholder="Enter username" required>
             </div>
             <!-- BUTTONS TO ADD/REMOVE HOSTS-->
             <div class="form-group">
@@ -94,20 +94,45 @@
             </div><br>
             <!-- BUTTONS TO ADD/REMOVE TEAMS-->
             <div class="form-group">
-                <p><b>Teams:</b></p>
+                <h4><b>Teams:</b></h4>
                 <button class="button btn-success" id="addteam" name="addteam" onclick="addTeam()">Add team</button>
             </div>
             <!-- DIV FOR ADDED HOSTS TO APPEAR -->
             <div id="teamdiv">
 
             </div><br>
+            <div class="form-group">
+                <h4><b>Players:</b></h4>
+                <div id="generateplayerslotsdiv">
+                    <label for="playerslotnumber">Choose number of original player slots (in hydra games this may be lower than amount of players):</label>
+                    <input type="number" id="playerslotnumber" name="playerslotnumber" min="1" max="500" class="form-control">
+                    <button id="generateplayerslots" name="generateplayerslots" class="btn-success">Generate player slots</button>
+                </div>
+                <br>
+                <button id="addplayerslot" name="addplayerslot" class="btn-success" onclick="addPlayerSlot()">Add player slot</button>
+            </div>
+            <!-- DIV FOR ADDED PLAYER SLOTS TO APPEAR -->
+            <div id="playerslotdiv">
+            </div><br>
+            <table id="allplayerslotstable" class="table">
+                <thead>
+                    <tr>
+                        <td>Player</td>
+                        <td>Team</td>
+                        <td>Role</td>
+                        <td>End status</td>
+                        <td>Alias</td>
+                        <td>Second player</td>
+                        <td>Remove player spot</td>
+                    </tr>
+                </thead>
+                <tbody id="allplayerslotsbody">
 
+                </tbody>
+            </table>
         </form>
     </div>
 
-    <script type="text/javascript">
-        alertNumber("tteest");
-    </script>
 
 
 @endsection

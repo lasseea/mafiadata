@@ -1,7 +1,3 @@
-/**
- * Created by leadk on 4/1/2017.
- */
-
 //HOST METHODS
 var hostCount = 1;
 var maxHosts = 25;
@@ -52,7 +48,7 @@ function removeHost(hostNumber) {
 var teamCount = 1;
 var maxTeams = 50;
 
-function addTeam(teamTypes, teamResultTypes) {
+function addTeam() {
     if(teamCount>maxTeams){
         alert('Max '+ maxTeams +' teams allowed per game')
     } else {
@@ -64,14 +60,14 @@ function addTeam(teamTypes, teamResultTypes) {
             '<input type="text" name="teamname' + teamCount + '" id="teamname' + teamCount + '" value="" placeholder="May be same as type" required >' +
             ' ' +
             '<label> Type: </label>' +
-            '<select name="teamtype' + teamCount + '" id="teamtype' + teamCount + '">' +
+            '<select name="teamtype' + teamCount + '" id="teamtype' + teamCount + '" required>' +
             '<option value="Town">Town</option>' +
             '<option value="Mafia">Mafia</option>' +
             '<option value="Third Party">Third Party</option>' +
             '</select>' +
             ' ' +
             '<label>Team Result: </label>' +
-            '<select name="teamresulttype' + teamCount + '" id="teamresulttype' + teamCount + '">' +
+            '<select name="teamresulttype' + teamCount + '" id="teamresulttype' + teamCount + '" required>' +
             '<option value="Won">Won</option>' +
             '<option value="Lost">Lost</option>' +
             '<option value="Draw">Draw</option>' +
@@ -106,4 +102,65 @@ function removeTeam(teamNumber) {
         $("#removeteam"+i).attr("name", 'removeteam' + count);
         $("#removeteam"+i).attr("id", 'removeteam' + count);
     }
+}
+
+//PLAYER SLOT METHODS
+var slotCount = 1;
+var maxSlots = 500;
+
+function addPlayerSlot() {
+    if(slotCount>maxSlots){
+        alert('Max '+ maxSlots +' player slots allowed per game')
+    } else {
+        var newPlayerSlotRow = $(document.createElement('tr'))
+            .attr("id", 'playerslotrow' + slotCount);
+
+        newPlayerSlotRow.after().html(
+            /*
+            '<label>Player:</label>' +
+            '<input type="text" id="player'+ slotCount +'" name="player'+ slotCount +'" placeholder="Enter player name here" required>' +
+            ' ' +
+            '<label>Team: </label>'+
+            '<input type="text" name="slotteam' + slotCount + '" id="slotteam' + slotCount + '" placeholder="C/P team name here" required >' +
+            ' ' +
+            '<label>Role:</label>' +
+
+            ' ' +
+            '<label>End status:</label>' +
+
+            ' ' +
+            '<label>Alias:</label>' +
+
+            ' ' +
+
+            */
+            '<td><input type="text" id="player'+ slotCount +'" name="player'+ slotCount +'" placeholder="Enter player name here" required></td>' +
+            '<td><input type="text" name="slotteam' + slotCount + '" id="slotteam' + slotCount + '" placeholder="C/P team name here" required></td>' +
+            '<td><input type="text" name="slotrole' + slotCount + '" id="slotrole' + slotCount + '" value="Vanilla" placeholder="Enter role name here" required></td>' +
+            '<td><select id="slotstatus' + slotCount + '" name="slotstatus' + slotCount + '" required>' +
+            '<option value="Survived">Survived</option>' +
+            '<option value="Lynched">Lynched</option>' +
+            '<option value="Night killed by Mafia or Third Party">Night killed by Mafia or Third Party</option>' +
+            '<option value="Night killed by Town">Night killed by Town</option>' +
+            '<option value="Day killed by Mafia or Third Party">Day killed by Mafia or Third Party</option>' +
+            '<option value="Day killed by Town">Day killed by Town</option>' +
+            '<option value="Modkilled">Modkilled</option>' +
+            '<option value="In-Thread Attack">In-Thread Attack</option>' +
+            '<option value="Killed in event">Killed in event</option>' +
+            '<option value="Suicide">Suicide</option>' +
+            '<option value="Endgamed">Endgamed</option>' +
+            '<option value="Conceded">Conceded</option>' +
+            '</select></td>' +
+            '<td><input type="text" id="alias'+ slotCount +'" name="alias'+ slotCount +'" placeholder="Enter alias/hydra name" required></td>' +
+            '<td><input type="text" id="secondplayer'+ slotCount +'" name="secondplayer'+ slotCount +'" placeholder="Only if Hydra game" required></td>' +
+            '<td><button class="button btn-danger" id="removeplayerslot' + slotCount + '" name="removeplayerslot' + slotCount + '" onclick="removePlayerSlot(' + slotCount + ')">X</button></td>'
+        );
+
+        newPlayerSlotRow.appendTo("#allplayerslotsbody");
+        slotCount++;
+    }
+}
+
+function removePlayerSlot(playerSlotNumber) {
+
 }
