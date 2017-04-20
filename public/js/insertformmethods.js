@@ -134,7 +134,7 @@ function addPlayerSlot() {
             '<option value="Conceded">Conceded</option>' +
             '</select></td>' +
             '<td><input type="text" id="alias'+ slotCount +'" name="alias'+ slotCount +'" placeholder="Enter alias/hydra name" required></td>' +
-            '<td><input type="text" id="secondplayer'+ slotCount +'" name="secondplayer'+ slotCount +'" placeholder="Only if Hydra game" required></td>' +
+            '<td><input type="text" id="secondplayer'+ slotCount +'" name="secondplayer'+ slotCount +'" placeholder="Enter name if hydra" required></td>' +
             '<td><button class="button btn-danger" id="removeplayerslot' + slotCount + '" name="removeplayerslot' + slotCount + '" onclick="removePlayerSlot(' + slotCount + ')">X</button></td>'
         );
 
@@ -169,4 +169,25 @@ function removePlayerSlot(playerSlotNumber) {
         $("#removeplayerslot"+i).attr("onclick", 'removePlayerSlot('+ count +')');
         $("#removeplayerslot"+i).attr("id", 'removeplayerslot' + count);
     }
+}
+
+function generatePlayerSlots() {
+    var amount = document.getElementById("playerslotnumber").value;
+    if (amount < 0  || amount > 500) {
+        alert('Amount of player spots must be between 1 and 500');
+    } else {
+        hidePlayerSlotsGenerator();
+        showPlayerSlotsTable();
+        for (var i = 0; i < amount; i++) {
+            addPlayerSlot();
+        }
+    }
+}
+
+function hidePlayerSlotsGenerator() {
+    $("#generateplayerslotsdiv").hide();
+}
+
+function showPlayerSlotsTable() {
+    $("#playerspotdiv").removeClass('hidden');
 }

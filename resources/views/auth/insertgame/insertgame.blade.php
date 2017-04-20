@@ -102,18 +102,18 @@
 
             </div><br>
             <div class="form-group">
-                <h4><b>Players:</b></h4>
+                <h4><b>Player slots:</b></h4>
                 <div id="generateplayerslotsdiv">
                     <label for="playerslotnumber">Choose number of original player slots (in hydra games this may be lower than amount of players):</label>
                     <input type="number" id="playerslotnumber" name="playerslotnumber" min="1" max="500" class="form-control">
-                    <button id="generateplayerslots" name="generateplayerslots" class="btn-success">Generate player slots</button>
+                    <button id="generateplayerslots" name="generateplayerslots" class="btn-success" onclick="generatePlayerSlots()">Generate player slots</button>
                 </div>
-                <br>
-                <button id="addplayerslot" name="addplayerslot" class="btn-success" onclick="addPlayerSlot()">Add player slot</button>
             </div>
             <!-- TABLE FOR ADDED PLAYER SLOTS TO APPEAR -->
-            <table id="allplayerslotstable" class="table">
-                <thead>
+            <div class="form-group hidden" id="playerspotdiv">
+                <button id="addplayerslot" name="addplayerslot" class="btn-success" onclick="addPlayerSlot()">Add player slot</button>
+                <table id="allplayerslotstable" class="table-condensed">
+                    <thead>
                     <tr>
                         <td>Player</td>
                         <td>Team</td>
@@ -121,12 +121,13 @@
                         <td>End status</td>
                         <td>Alias</td>
                         <td>Second player</td>
-                        <td>Remove player spot</td>
+                        <td>Remove</td>
                     </tr>
-                </thead>
-                <tbody id="allplayerslotsbody">
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody id="allplayerslotsbody">
+                    </tbody>
+                </table>
+            </div>
             <br>
         </form>
     </div>
