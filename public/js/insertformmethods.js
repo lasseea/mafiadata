@@ -237,3 +237,66 @@ function removeSubstitute(substituteNumber) {
         $("#removesubstitute"+i).attr("id", 'removesubstitute' + count);
     }
 }
+
+//ACTION METHODS
+var actionCount = 1;
+var maxActions = 2000;
+
+function addAction() {
+    if(actionCount>maxActions){
+        alert('Max '+ maxActions +' actions allowed per game')
+    } else {
+        var newActionRow = $(document.createElement('tr'))
+            .attr("id", 'actionrow' + actionCount);
+
+        newActionRow.after().html(
+            '<td><input type="text" name="actionuser' + actionCount + '" id="actionuser' + actionCount + '" value="" placeholder="Enter name here" required></td>' +
+            '<td><select id="actionname' + actionCount + '" name="actionname' + actionCount + '" required>' +
+            '<option value=""></option>' +
+            '<option value="Peek">Peek</option>' +
+            '<option value="Protect">Protect</option>' +
+            '<option value="Vig Shot">Vig Shot</option>' +
+            '<option value="ITA Shot">ITA Shot</option>' +
+            '</select></td>' +
+            '<td><input type="text" name="actiontextname' + actionCount + '" id="actiontextname' + actionCount + '" value="" placeholder="Enter name here" required></td>' +
+            '<td><input type="text" name="actiontarget' + actionCount + '" id="actiontarget' + actionCount + '" value="" placeholder="Enter name here" required></td>' +
+            '<td><select id="nightorday' + actionCount + '" name="nightorday' + actionCount + '" required>' +
+            '<option value="Night">Night</option>' +
+            '<option value="Day">Day</option>' +
+            '</select></td>' +
+            '<td><input type="number" name="whichnightorday' + actionCount + '" id="whichnightorday' + actionCount + '" value="0" min="0" max="500" required></td>' +
+            '<td><button class="button btn-danger" id="removeaction' + actionCount + '" name="removeaction' + actionCount + '" onclick="removeAction(' + actionCount + ')">X</button></td>'
+        );
+
+        newActionRow.appendTo("#actionsbody");
+        actionCount++;
+    }
+}
+
+function removeAction(actionNumber) {
+    if(actionCount==1){
+        alert("Error - No action to remove");
+        return false;
+    }
+    actionCount--;
+    $("#actionrow"+actionNumber).remove();
+    for (i=actionNumber; i <= maxActions ; i++) {
+        var count = i-1;
+        $("#substituterow"+i).attr("id", 'substituterow' + count);
+        $("#actionuser"+i).attr("name", 'actionuser' + count);
+        $("#actionuser"+i).attr("id", 'actionuser' + count);
+        $("#actionname"+i).attr("name", 'actionname' + count);
+        $("#actionname"+i).attr("id", 'actionname' + count);
+        $("#actiontextname"+i).attr("name", 'actiontextname' + count);
+        $("#actiontextname"+i).attr("id", 'actiontextname' + count);
+        $("#actiontarget"+i).attr("name", 'actiontarget' + count);
+        $("#actiontarget"+i).attr("id", 'actiontarget' + count);
+        $("#nightorday"+i).attr("name", 'nightorday' + count);
+        $("#nightorday"+i).attr("id", 'nightorday' + count);
+        $("#whichnightorday"+i).attr("name", 'whichnightorday' + count);
+        $("#whichnightorday"+i).attr("id", 'whichnightorday' + count);
+        $("#removeaction"+i).attr("name", 'removeaction' + count);
+        $("#removeaction"+i).attr("onclick", 'removeAction('+ count +')');
+        $("#removeaction"+i).attr("id", 'removeaction' + count);
+    }
+}

@@ -75,7 +75,7 @@
             <!-- GAME DESCRIPTION -->
             <div class="form-group">
                 <label for="description">Game Description:</label>
-                <p>Write here if you want to leave a short comment about the game.</p>
+                <p>Here you can leave a short comment about the game.</p>
                 <textarea rows="2" cols="50" name="description" id="description" class="form-control"></textarea>
             </div>
             <!-- GAME MAIN HOST -->
@@ -146,6 +146,29 @@
                     </tr>
                     </thead>
                     <tbody id="substitutesbody">
+                    </tbody>
+                </table>
+            </div>
+            <!-- GAME ACTIONS -->
+            <div class="form-group" id="actionsdiv">
+                <h4><b>Actions:</b></h4>
+                <!-- BUTTON TO ADD ACTIONS-->
+                <button class="button btn-success" id="addaction" name="addaction" onclick="addAction()">Add action</button>
+
+                <!-- TABLE FOR ADDED ACTIONS TO APPEAR -->
+                <table id="actionstable" class="table-condensed">
+                    <thead>
+                    <tr>
+                        <td>Action user</td>
+                        <td>Action name</td>
+                        <td>Action name</td>
+                        <td>Action target</td>
+                        <td>Night or day</td>
+                        <td>Which night/day?</td>
+                        <td>Remove</td>
+                    </tr>
+                    </thead>
+                    <tbody id="actionsbody">
                     </tbody>
                 </table>
                 <br>
