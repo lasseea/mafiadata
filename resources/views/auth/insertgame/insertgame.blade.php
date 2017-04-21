@@ -84,7 +84,7 @@
                 <label for="mainhost">Main Host:</label>
                 <input type="text" id="mainhost" name="mainhost" placeholder="Enter username" required>
             </div>
-            <!-- BUTTONS TO ADD/REMOVE HOSTS-->
+            <!-- BUTTON TO ADD/REMOVE HOSTS-->
             <div class="form-group">
                 <button class="button btn-success" id="addhost" name="addhost" onclick="addHost()">Add host</button>
             </div>
@@ -92,7 +92,7 @@
             <div id="hostdiv">
 
             </div><br>
-            <!-- BUTTONS TO ADD/REMOVE TEAMS-->
+            <!-- BUTTON TO ADD/REMOVE TEAMS-->
             <div class="form-group">
                 <h4><b>Teams:</b></h4>
                 <button class="button btn-success" id="addteam" name="addteam" onclick="addTeam()">Add team</button>
@@ -129,6 +129,27 @@
                 </table>
             </div>
             <br>
+            <!-- GAME SUBSTITUTES -->
+            <div class="form-group" id="substitutesdiv">
+                <h4><b>Substitutes:</b></h4>
+                <!-- BUTTON TO ADD/REMOVE SUBSTITUTES-->
+                <button class="button btn-success" id="addsubstitute" name="addsubstitute" onclick="addSubstitute()">Add substitute</button>
+
+                <!-- TABLE FOR ADDED SUBSTITUTES TO APPEAR -->
+                <table id="substitutestable" class="table-condensed">
+                    <thead>
+                    <tr>
+                        <td>Player subbing in</td>
+                        <td>Player subbing out</td>
+                        <td>Day/Night of substitution</td>
+                        <td>Remove</td>
+                    </tr>
+                    </thead>
+                    <tbody id="substitutesbody">
+                    </tbody>
+                </table>
+                <br>
+            </div>
         </form>
     </div>
 

@@ -172,8 +172,9 @@ function removePlayerSlot(playerSlotNumber) {
 }
 
 function generatePlayerSlots() {
-    var amount = document.getElementById("playerslotnumber").value;
-    if (amount < 0  || amount > 500) {
+    var amount = 0;
+    amount = document.getElementById("playerslotnumber").value;
+    if (amount <= 0  || amount > 500) {
         alert('Amount of player spots must be between 1 and 500');
     } else {
         hidePlayerSlotsGenerator();
@@ -190,4 +191,49 @@ function hidePlayerSlotsGenerator() {
 
 function showPlayerSlotsTable() {
     $("#playerspotdiv").removeClass('hidden');
+}
+
+//SUBSTITUTE METHODS
+var substituteCount = 1;
+var maxSubstitutes = 200;
+
+function addSubstitute() {
+    if(substituteCount>maxSubstitutes){
+        alert('Max '+ maxSubstitutes +' substitutes allowed per game')
+    } else {
+        var newSubstituteRow = $(document.createElement('tr'))
+            .attr("id", 'substituterow' + substituteCount);
+
+        newSubstituteRow.after().html(
+            '<td><input type="text" name="suboutname' + substituteCount + '" id="suboutname' + substituteCount + '" value="" placeholder="Enter player name here" required></td>' +
+            '<td><input type="text" name="subinname' + substituteCount + '" id="subinname' + substituteCount + '" value="" placeholder="Enter player name here" required></td>' +
+            '<td><input type="number" name="dayofsub' + substituteCount + '" id="dayofsub' + substituteCount + '" value="0" min="0" max="500" required></td>' +
+            '<td><button class="button btn-danger" id="removesubstitute' + substituteCount + '" name="removesubstitute' + substituteCount + '" onclick="removeSubstitute(' + substituteCount + ')">X</button></td>'
+        );
+
+        newSubstituteRow.appendTo("#substitutesbody");
+        substituteCount++;
+    }
+}
+
+function removeSubstitute(substituteNumber) {
+    if(substituteCount==1){
+        alert("Error - No substitute to remove");
+        return false;
+    }
+    substituteCount--;
+    $("#substituterow"+substituteNumber).remove();
+    for (i=substituteNumber; i <= maxSubstitutes ; i++) {
+        var count = i-1;
+        $("#substituterow"+i).attr("id", 'substituterow' + count);
+        $("#suboutname"+i).attr("name", 'suboutname' + count);
+        $("#suboutname"+i).attr("id", 'suboutname' + count);
+        $("#subinname"+i).attr("name", 'subinname' + count);
+        $("#subinname"+i).attr("id", 'subinname' + count);
+        $("#dayofsub"+i).attr("name", 'dayofsub' + count);
+        $("#dayofsub"+i).attr("id", 'dayofsub' + count);
+        $("#removesubstitute"+i).attr("name", 'removesubstitute' + count);
+        $("#removesubstitute"+i).attr("onclick", 'removeSubstitute('+ count +')');
+        $("#removesubstitute"+i).attr("id", 'removesubstitute' + count);
+    }
 }
