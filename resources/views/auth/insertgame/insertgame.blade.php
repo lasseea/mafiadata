@@ -3,7 +3,16 @@
 @section('content')
 
     <div class="container">
-        <form action="{{ url('auth/insertgame/submit') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form action="{{ url('/submitgame') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
             <h2>Insert New Game</h2><br>
             <!-- COMMUNITY -->
             <div class="form-group">
@@ -61,7 +70,7 @@
                 <label for="daylength">Day Phase Length: </label>
                 <input type="text" id="daylength" name="daylength" value="0" required>
                 <label for="nightlength">Night Phase Length: </label>
-                <input type="text" id="nightlength" name="daylength" value="0" required>
+                <input type="text" id="nightlength" name="nightlength" value="0" required>
             </div>
             <!-- CHECK IF GAME INCLUDED CHECKBOXES -->
             <div class="form-group">
@@ -91,7 +100,8 @@
             <!-- DIV FOR ADDED HOSTS TO APPEAR -->
             <div id="hostdiv">
 
-            </div><br>
+            </div>
+            <hr>
             <!-- BUTTON TO ADD/REMOVE TEAMS-->
             <div class="form-group">
                 <h4><b>Teams:</b></h4>
@@ -99,8 +109,9 @@
             </div>
             <!-- DIV FOR ADDED HOSTS TO APPEAR -->
             <div id="teamdiv">
-
-            </div><br>
+            </div>
+            <hr>
+            <!-- PLAYER SLOTS -->
             <div class="form-group">
                 <h4><b>Player slots:</b></h4>
                 <div id="generateplayerslotsdiv">
@@ -128,7 +139,7 @@
                     </tbody>
                 </table>
             </div>
-            <br>
+            <hr>
             <!-- GAME SUBSTITUTES -->
             <div class="form-group" id="substitutesdiv">
                 <h4><b>Substitutes:</b></h4>
@@ -149,6 +160,7 @@
                     </tbody>
                 </table>
             </div>
+            <hr>
             <!-- GAME ACTIONS -->
             <div class="form-group" id="actionsdiv">
                 <h4><b>Actions:</b></h4>
@@ -171,8 +183,13 @@
                     <tbody id="actionsbody">
                     </tbody>
                 </table>
-                <br>
             </div>
+            <hr>
+            <div class="form-group">
+                <button type="submit" class="btn-success btn-lg">Add game</button>
+            </div>
+            <br>
+            {{ csrf_field() }}
         </form>
     </div>
 

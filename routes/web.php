@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index');
 Route::group(['middleware' => 'admin'], function (){
     //Insert game routes
     Route::get('/insert', 'InsertGameController@index');
+    Route::post('/submitgame', 'InsertGameController@submit');
 
     //Update game routes
     Route::get('/update', 'UpdateGameController@index');

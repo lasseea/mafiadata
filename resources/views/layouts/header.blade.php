@@ -78,3 +78,8 @@
         </div>
     </div>
 </nav>
+<div class="container">
+    @if(Session::has('status'))
+        <div class="alert alert-success"><em> {!! session('status') !!}</em></div>
+    @endif
+</div>
