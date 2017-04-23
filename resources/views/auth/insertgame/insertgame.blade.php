@@ -13,7 +13,9 @@
             </div>
         @endif
         <form action="{{ url('/submitgame') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
-            <h2>Insert New Game</h2><br>
+            <div class="form-group">
+                <h2>Insert New Game</h2><br>
+            </div>
             <!-- COMMUNITY -->
             <div class="form-group">
                 <label for="community">Game Community:</label>
@@ -76,8 +78,8 @@
             <div class="form-group">
                 <h4><b>Check if game included any of the following:</b></h4>
                 @foreach($gamemodificationtypes as $gamemodificationtype)
-                    <input type="checkbox" id="gamemodificaiton{{ $gamemodificationtype->game_modification_type_id }}" name="gamemodificaiton{{ $gamemodificationtype->game_modification_type_id }}" value="1" class="form-inline">
-                    <label for="gamemodificaiton{{ $gamemodificationtype->game_modification_type_id }}">{{ $gamemodificationtype->modification_type_name }}</label>
+                    <input type="checkbox" id="gamemodification[{{ $gamemodificationtype->game_modification_type_id }}]" name="gamemodification[{{ $gamemodificationtype->game_modification_type_id }}]" value="1" class="form-inline">
+                    <label for="gamemodification[{{ $gamemodificationtype->game_modification_type_id }}]">{{ $gamemodificationtype->modification_type_name }}</label>
                     <br>
                 @endforeach
             </div>

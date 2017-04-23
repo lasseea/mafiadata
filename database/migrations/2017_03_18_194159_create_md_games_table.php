@@ -19,7 +19,6 @@ class CreateMdGamesTable extends Migration
             $table->string('game_title');
             $table->string('game_thread_url');
             $table->integer('game_type')->unsigned();
-            $table->string('game_type');
             $table->boolean('normal_or_turbo');
             $table->integer('game_total_post_count')->unsigned();
             $table->string('game_description');
