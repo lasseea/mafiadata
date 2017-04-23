@@ -56,6 +56,7 @@
             </div>
             <!-- WAS IT A TURBO? CHECKBOX -->
             <div class="form-group">
+                <input type='hidden' value='0' name='wasitturbo'>
                 <input type="checkbox" id="wasitturbo" name="wasitturbo" value="1" class="form-inline">
                 <label for="wasitturbo">Check if it was a turbo game: </label>
                 (day/night phases lasting less than an hour each)
@@ -87,7 +88,7 @@
             <div class="form-group">
                 <label for="description">Game Description:</label>
                 <p>Here you can leave a short comment about the game.</p>
-                <textarea rows="2" cols="50" name="description" id="description" class="form-control"></textarea>
+                <textarea rows="2" cols="50" name="description" id="description" class="form-control" required>No comment</textarea>
             </div>
             <!-- GAME MAIN HOST -->
             <div class="form-group">

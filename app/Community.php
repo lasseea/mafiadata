@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Community extends Model
 {
-    protected $table = "md_communitites";
+    protected $table = "md_communities";
 
     protected $fillable = [
         'community_id',
