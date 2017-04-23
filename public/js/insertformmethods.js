@@ -133,8 +133,8 @@ function addPlayerSlot() {
             '<option value="Endgamed">Endgamed</option>' +
             '<option value="Conceded">Conceded</option>' +
             '</select></td>' +
-            '<td><input type="text" id="alias'+ slotCount +'" name="alias['+ slotCount +']" placeholder="Enter alias/hydra name" required></td>' +
-            '<td><input type="text" id="secondplayer'+ slotCount +'" name="secondplayer['+ slotCount +']" placeholder="Enter name if hydra" required></td>' +
+            '<td><input type="text" id="alias'+ slotCount +'" name="alias['+ slotCount +']" placeholder="Enter alias/hydra name"></td>' +
+            '<td><input type="text" id="secondplayer'+ slotCount +'" name="secondplayer['+ slotCount +']" placeholder="Enter name if hydra"></td>' +
             '<td><button class="button btn-danger" id="removeplayerslot' + slotCount + '" name="removeplayerslot[' + slotCount + ']" onclick="removePlayerSlot(' + slotCount + ')">X</button></td>'
         );
 
@@ -252,13 +252,13 @@ function addAction() {
         newActionRow.after().html(
             '<td><input type="text" name="actionuser[' + actionCount + ']" id="actionuser' + actionCount + '" value="" placeholder="Enter name here" required></td>' +
             '<td><select id="actionname' + actionCount + '" name="actionname[' + actionCount + ']" required>' +
-            '<option value=""></option>' +
+            '<option value="Action"></option>' +
             '<option value="Peek">Peek</option>' +
             '<option value="Protect">Protect</option>' +
             '<option value="Vig Shot">Vig Shot</option>' +
             '<option value="ITA Shot">ITA Shot</option>' +
             '</select></td>' +
-            '<td><input type="text" name="actiontextname[' + actionCount + ']" id="actiontextname' + actionCount + '" value="" placeholder="Enter name here" required></td>' +
+            '<td><input type="text" name="actiontextname[' + actionCount + ']" id="actiontextname' + actionCount + '" value="" placeholder="Enter name here"></td>' +
             '<td><input type="text" name="actiontarget[' + actionCount + ']" id="actiontarget' + actionCount + '" value="" placeholder="Enter name here" required></td>' +
             '<td><select id="nightorday[' + actionCount + '" name="nightorday[' + actionCount + ']" required>' +
             '<option value="Night">Night</option>' +
