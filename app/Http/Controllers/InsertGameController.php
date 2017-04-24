@@ -57,9 +57,11 @@ class InsertGameController extends Controller
         ]);
         $community = App\Community::where('community_name', $request->community)->value('community_id');
         $gametype = App\Game_type::where('game_type_name', $request->gametype)->value('game_type_id');
-        DB::transaction(function () use ($community, $request, $gametype) {
+        $modificationtypecount = 0;
+        $modificationtypecount = App\Game_modification_type::all()->count();
+        DB::transaction(function () use ($community, $request, $gametype, $modificationtypecount) {
 
-            DB::table('md_games')->insert(
+            $lastGameId = DB::table('md_games')->insertGetId(
                 [
                     'game_community' => $community,
                     'game_title' => $request->title,
@@ -74,6 +76,17 @@ class InsertGameController extends Controller
                     'game_data_managed_by' => Auth::user()->id,
                 ]
             );
+            for ($i = 1; $i <= $modificationtypecount; $i++) {
+                if ($request->gamemodification[$i] == 1) {
+                    DB::table('md_game_modifications')->insert(
+                        [
+                            'game_modification_type_id' => $i,
+                            'game_id' => $lastGameId
+                        ]
+                    );
+                }
+            }
+
         });
 
 

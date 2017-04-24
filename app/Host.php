@@ -8,6 +8,8 @@ class Host extends Model
 {
     protected $table = "md_hosts";
 
+    public $timestamps = false;
+
     protected $fillable = [
         'host_id',
         'host_username',

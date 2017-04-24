@@ -8,6 +8,8 @@ class Game_player_slot extends Model
 {
     protected $table = "md_game_player_slots";
 
+    public $timestamps = false;
+
     protected $fillable = [
         'game_player_slot_id',
         'game_id',

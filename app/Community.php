@@ -8,6 +8,8 @@ class Community extends Model
 {
     protected $table = "md_communities";
 
+    public $timestamps = false;
+
     protected $fillable = [
         'community_id',
         'community_name',

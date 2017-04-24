@@ -79,6 +79,7 @@
             <div class="form-group">
                 <h4><b>Check if game included any of the following:</b></h4>
                 @foreach($gamemodificationtypes as $gamemodificationtype)
+                    <input type='hidden' value='0' name='gamemodification[{{ $gamemodificationtype->game_modification_type_id }}]'>
                     <input type="checkbox" id="gamemodification[{{ $gamemodificationtype->game_modification_type_id }}]" name="gamemodification[{{ $gamemodificationtype->game_modification_type_id }}]" value="1" class="form-inline">
                     <label for="gamemodification[{{ $gamemodificationtype->game_modification_type_id }}]">{{ $gamemodificationtype->modification_type_name }}</label>
                     <br>

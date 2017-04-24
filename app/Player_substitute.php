@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Player_substitute extends Model
 {
     protected $table = "md_player_substitutes";
+    public $timestamps = false;
+
 
     protected $fillable = [
         'player_slot_player_substitute_id',
