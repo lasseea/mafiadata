@@ -109,6 +109,7 @@
             <!-- BUTTON TO ADD/REMOVE TEAMS-->
             <div class="form-group">
                 <h4><b>Teams:</b></h4>
+                <p>Notice: use different team names for each team of same game (example: don't have 2 teams with Team name being "Mafia")</p>
                 <button class="button btn-success" id="addteam" name="addteam" onclick="addTeam()">Add team</button>
             </div>
             <!-- DIV FOR ADDED HOSTS TO APPEAR -->
@@ -118,6 +119,7 @@
             <!-- PLAYER SLOTS -->
             <div class="form-group">
                 <h4><b>Player slots:</b></h4>
+                <p>Notice: important that "Team" field is exactly the same as one of the team names(tip: copy/paste team names to be sure)</p>
                 <div id="generateplayerslotsdiv">
                     <label for="playerslotnumber">Choose number of original player slots (in hydra games this may be lower than amount of players):</label>
                     <input type="number" id="playerslotnumber" name="playerslotnumber" min="1" max="500" class="form-control">
@@ -134,6 +136,7 @@
                         <td>Team</td>
                         <td>Role</td>
                         <td>End status</td>
+                        <td>End day</td>
                         <td>Alias</td>
                         <td>Second player</td>
                         <td>Remove</td>
@@ -147,6 +150,7 @@
             <!-- GAME SUBSTITUTES -->
             <div class="form-group" id="substitutesdiv">
                 <h4><b>Substitutes:</b></h4>
+                <p>Notice: important that "Player subbing out" field is exactly the same as either one of the "Player" or "Second player" fields from player slot list(tip: copy/paste player names to be sure)</p>
                 <!-- BUTTON TO ADD/REMOVE SUBSTITUTES-->
                 <button class="button btn-success" id="addsubstitute" name="addsubstitute" onclick="addSubstitute()">Add substitute</button>
 
@@ -154,8 +158,8 @@
                 <table id="substitutestable" class="table-condensed">
                     <thead>
                     <tr>
-                        <td>Player subbing in</td>
                         <td>Player subbing out</td>
+                        <td>Player subbing in</td>
                         <td>Day/Night of substitution</td>
                         <td>Remove</td>
                     </tr>

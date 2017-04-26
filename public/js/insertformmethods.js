@@ -14,7 +14,7 @@ function addHost() {
             '<input type="text" name="hostusername[' + hostCount + ']" id="hostusername' + hostCount + '" value="" required >' +
             ' ' +
             '<label> Type: </label>' +
-            '<select name="hosttype[' + hostCount + ']" id="hosttype' + hostCount + '"><option value="Co-host">Co-host</option><option value="Main host">Main host</option></select>' +
+            '<select name="hosttype[' + hostCount + ']" id="hosttype' + hostCount + '"><option value="2">Co-host</option><option value="1">Main host</option></select>' +
             ' ' +
             '<button class="button btn-danger" id="removehost' + hostCount + '" name="removehost[' + hostCount + ']" onclick="removeHost('+hostCount+')">X</button>'
         );
@@ -61,17 +61,17 @@ function addTeam() {
             ' ' +
             '<label> Type: </label>' +
             '<select name="teamtype[' + teamCount + ']" id="teamtype' + teamCount + '" required>' +
-            '<option value="Town">Town</option>' +
-            '<option value="Mafia">Mafia</option>' +
-            '<option value="Third Party">Third Party</option>' +
+            '<option value="1">Town</option>' +
+            '<option value="2">Mafia</option>' +
+            '<option value="3">Third Party</option>' +
             '</select>' +
             ' ' +
             '<label>Team Result: </label>' +
             '<select name="teamresulttype[' + teamCount + ']" id="teamresulttype' + teamCount + '" required>' +
-            '<option value="Won">Won</option>' +
-            '<option value="Lost">Lost</option>' +
-            '<option value="Draw">Draw</option>' +
-            '<option value="Null">Null</option>' +
+            '<option value="1">Won</option>' +
+            '<option value="2">Lost</option>' +
+            '<option value="3">Draw</option>' +
+            '<option value="4">Null</option>' +
             '</select>' +
             ' ' +
             '<button class="button btn-danger" id="removeteam' + teamCount + '" name="removeteam[' + teamCount + ']" onclick="removeTeam(' + teamCount + ')">X</button>'
@@ -92,8 +92,8 @@ function removeTeam(teamNumber) {
     for (i=teamNumber; i <= maxTeams ; i++) {
         var count = i-1;
         $("#teamdiv"+i).attr("id", 'teamdiv' + count);
-        $("#teamusername"+i).attr("name", 'teamname[' + count + ']');
-        $("#teamusername"+i).attr("id", 'teamname' + count);
+        $("#teamname"+i).attr("name", 'teamname[' + count + ']');
+        $("#teamname"+i).attr("id", 'teamname' + count);
         $("#teamtype"+i).attr("name", 'teamtype[' + count + ']');
         $("#teamtype"+i).attr("id", 'teamtype' + count);
         $("#teamresulttype"+i).attr("name", 'teamresulttype[' + count + ']');
@@ -120,19 +120,20 @@ function addPlayerSlot() {
             '<td><input type="text" name="slotteam[' + slotCount + ']" id="slotteam' + slotCount + '" placeholder="C/P team name here" required></td>' +
             '<td><input type="text" name="slotrole[' + slotCount + ']" id="slotrole' + slotCount + '" value="Vanilla" placeholder="Enter role name here" required></td>' +
             '<td><select id="slotstatus' + slotCount + '" name="slotstatus[' + slotCount + ']" required>' +
-            '<option value="Survived">Survived</option>' +
-            '<option value="Lynched">Lynched</option>' +
-            '<option value="Night killed by Mafia or Third Party">Night killed by Mafia or Third Party</option>' +
-            '<option value="Night killed by Town">Night killed by Town</option>' +
-            '<option value="Day killed by Mafia or Third Party">Day killed by Mafia or Third Party</option>' +
-            '<option value="Day killed by Town">Day killed by Town</option>' +
-            '<option value="Modkilled">Modkilled</option>' +
-            '<option value="In-Thread Attack">In-Thread Attack</option>' +
-            '<option value="Killed in event">Killed in event</option>' +
-            '<option value="Suicide">Suicide</option>' +
-            '<option value="Endgamed">Endgamed</option>' +
-            '<option value="Conceded">Conceded</option>' +
+            '<option value="1">Survived</option>' +
+            '<option value="2">Lynched</option>' +
+            '<option value="3">Night killed by Mafia or Third Party</option>' +
+            '<option value="4">Night killed by Town</option>' +
+            '<option value="5">Day killed by Mafia or Third Party</option>' +
+            '<option value="6">Day killed by Town</option>' +
+            '<option value="7">Modkilled</option>' +
+            '<option value="8">In-Thread Attack</option>' +
+            '<option value="9">Killed in event</option>' +
+            '<option value="10">Suicide</option>' +
+            '<option value="11">Endgamed</option>' +
+            '<option value="12">Conceded</option>' +
             '</select></td>' +
+            '<td><input type="number" id="endday'+ slotCount +'" name="endday['+ slotCount +']" placeholder="Last day still playing" required></td>' +
             '<td><input type="text" id="alias'+ slotCount +'" name="alias['+ slotCount +']" placeholder="Enter alias/hydra name"></td>' +
             '<td><input type="text" id="secondplayer'+ slotCount +'" name="secondplayer['+ slotCount +']" placeholder="Enter name if hydra"></td>' +
             '<td><button class="button btn-danger" id="removeplayerslot' + slotCount + '" name="removeplayerslot[' + slotCount + ']" onclick="removePlayerSlot(' + slotCount + ')">X</button></td>'
@@ -163,6 +164,8 @@ function removePlayerSlot(playerSlotNumber) {
         $("#slotstatus"+i).attr("id", 'slotstatus' + count);
         $("#alias"+i).attr("name", 'alias[' + count + ']');
         $("#alias"+i).attr("id", 'alias' + count);
+        $("#endday"+i).attr("name", 'endday[' + count + ']');
+        $("#endday"+i).attr("id", 'endday' + count);
         $("#secondplayer"+i).attr("name", 'secondplayer[' + count + ']');
         $("#secondplayer"+i).attr("id", 'secondplayer' + count);
         $("#removeplayerslot"+i).attr("name", 'removeplayerslot[' + count + ']');

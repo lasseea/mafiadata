@@ -37,12 +37,13 @@ class InsertGameController extends Controller
             'mainhost' => 'max:191|required',
             'hostusername.*' => 'max:191|required',
             'hosttype.*' => 'max:191|required',
-            'teamname.*' => 'max:191|required',
+            'game_team_name.*' => 'max:191|required',
             'teamresulttype.*' => 'max:191|required',
             'player.*' => 'max:191|required',
             'slotteam.*' => 'max:191|required',
             'slotrole.*' => 'max:191|required',
             'slotstatus.*' => 'max:191|required',
+            'endday.*' => 'integer|required',
             'alias.*' => 'max:191',
             'secondplayer.*' => 'max:191',
             'suboutname.*' => 'max:191|required',
@@ -57,9 +58,36 @@ class InsertGameController extends Controller
         ]);
         $community = App\Community::where('community_name', $request->community)->value('community_id');
         $gametype = App\Game_type::where('game_type_name', $request->gametype)->value('game_type_id');
+        //Counts amount of game modifications, to use in a for loop to ensure check all possible modifications
         $modificationtypecount = 0;
         $modificationtypecount = App\Game_modification_type::all()->count();
-        DB::transaction(function () use ($community, $request, $gametype, $modificationtypecount) {
+        //Counts amount of added hosts, to only add exactly that number of hosts to the database, excluding the main host
+        $addedhostscount = 0;
+        while (isset($request->hostusername[$addedhostscount+1])) {
+            $addedhostscount++;
+        }
+        $teamcount = 0;
+        while (isset($request->teamname[$teamcount+1])) {
+            $teamcount++;
+        }
+        $playerspotcount = 0;
+        while (isset($request->player[$playerspotcount+1])) {
+            $playerspotcount++;
+        }
+        $substitutecount = 0;
+        while (isset($request->suboutname[$substitutecount+1])){
+            $substitutecount++;
+        }
+        DB::transaction(function () use (
+            $community,
+            $request,
+            $gametype,
+            $modificationtypecount,
+            $addedhostscount,
+            $teamcount,
+            $playerspotcount,
+            $substitutecount
+        ) {
 
             $lastGameId = DB::table('md_games')->insertGetId(
                 [
@@ -86,7 +114,81 @@ class InsertGameController extends Controller
                     );
                 }
             }
+            DB::table('md_hosts')->insert(
+                 [
+                     'host_username' => $request->mainhost,
+                     'game_id' => $lastGameId,
+                     'game_host_type' => 1
+                 ]
+            );
+            for ($i = 1; $i <= $addedhostscount; $i++) {
+                DB::table('md_hosts')->insert(
+                    [
+                        'host_username' => $request->hostusername[$i],
+                        'game_id' => $lastGameId,
+                        'game_host_type' => $request->hosttype[$i]
+                    ]
+                );
+            }
+            $teamsArray = array();
+            for ($i = 1; $i <= $teamcount; $i++) {
+                $lastTeamId = DB::table('md_game_teams')->insertGetId(
+                    [
+                        'game_id' => $lastGameId,
+                        'game_team_name' => $request->teamname[$i],
+                        'team_type' => $request->teamtype[$i],
+                        'result_type' => $request->teamresulttype[$i],
+                    ]
+                );
+                $teamsArray[$request->teamname[$i]] = $lastTeamId;
+            }
+            $playersArray = array();
+            for ($i = 1; $i <= $playerspotcount; $i++) {
+                $lastSpotId = DB::table('md_game_player_slots')->insertGetId(
+                    [
+                        'game_id' => $lastGameId,
+                        'slot_number' => $i,
+                        'team_id' => $teamsArray[$request->slotteam[$i]],
+                        'role_name' => $request->slotrole[$i],
+                        'end_status_id' => $request->slotstatus[$i],
+                        'end_day' => $request->endday[$i]
 
+                    ]
+                );
+                $lastPlayerId = DB::table('md_player_slot_players')->insertGetId(
+                    [
+                        'game_player_slot_id' => $lastSpotId,
+                        'player_username' => $request->player[$i],
+                    ]
+                );
+                $playersArray[$request->player[$i]] = $lastPlayerId;
+                if (isset($request->secondplayer[$i])) {
+                    $lastPlayerId = DB::table('md_player_slot_players')->insertGetId(
+                        [
+                            'game_player_slot_id' => $lastSpotId,
+                            'player_username' => $request->secondplayer[$i],
+                        ]
+                    );
+                    $playersArray[$request->secondplayer[$i]] = $lastPlayerId;
+                }
+                if (isset($request->alias[$i])) {
+                    DB::table('md_game_player_slot_aliases')->insert(
+                        [
+                            'game_player_slot_id' => $lastSpotId,
+                            'alias_name' => $request->alias[$i]
+                        ]
+                    );
+                }
+            }
+            for ($i = 1; $i <= $substitutecount; $i++) {
+                DB::table('md_player_substitutes')->insert(
+                    [
+                        'sub_out_id' => $playersArray[$request->suboutname[$i]],
+                        'sub_in_username' => $request->subinname[$i],
+                        'day_of_sub' => $request->dayofsub[$i]
+                    ]
+                );
+            }
         });
 
 

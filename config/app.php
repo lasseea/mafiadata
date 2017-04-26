@@ -182,6 +182,10 @@ return [
          */
         Yajra\Datatables\DatatablesServiceProvider::class,
 
+        /*
+         * unique_with Validator rule for Laravel
+         */
+        Felixkiss\UniqueWithValidator\ServiceProvider::class,
     ],
 
     /*
