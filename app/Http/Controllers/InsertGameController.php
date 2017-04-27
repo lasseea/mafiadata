@@ -78,6 +78,10 @@ class InsertGameController extends Controller
         while (isset($request->suboutname[$substitutecount+1])){
             $substitutecount++;
         }
+        $actioncount = 0;
+        while (isset($request->actionuser[$actioncount+1])) {
+            $actioncount++;
+        }
         DB::transaction(function () use (
             $community,
             $request,
@@ -86,7 +90,8 @@ class InsertGameController extends Controller
             $addedhostscount,
             $teamcount,
             $playerspotcount,
-            $substitutecount
+            $substitutecount,
+            $actioncount
         ) {
 
             $lastGameId = DB::table('md_games')->insertGetId(
@@ -186,6 +191,24 @@ class InsertGameController extends Controller
                         'sub_out_id' => $playersArray[$request->suboutname[$i]],
                         'sub_in_username' => $request->subinname[$i],
                         'day_of_sub' => $request->dayofsub[$i]
+                    ]
+                );
+            }
+            for ($i = 1; $i <= $actioncount; $i++) {
+                $actionname = "";
+                if (isset($request->actiontextname[$i])) {
+                    $actionname = $request->actiontextname[$i];
+                } else {
+                    $actionname = $request->actionname[$i];
+                }
+                DB::table('md_game_actions')->insert(
+                    [
+                        'action_user' => $request->actionuser[$i],
+                        'action_name' => $actionname,
+                        'action_target' => $request->actiontarget[$i],
+                        'night_or_day' => $request->nightorday[$i],
+                        'which_night_or_day' => $request->whichnightorday[$i],
+                        'game_id' => $lastGameId,
                     ]
                 );
             }

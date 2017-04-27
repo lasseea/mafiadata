@@ -255,17 +255,17 @@ function addAction() {
         newActionRow.after().html(
             '<td><input type="text" name="actionuser[' + actionCount + ']" id="actionuser' + actionCount + '" value="" placeholder="Enter name here" required></td>' +
             '<td><select id="actionname' + actionCount + '" name="actionname[' + actionCount + ']" required>' +
-            '<option value="Action"></option>' +
+            '<option value="Unnamed action"></option>' +
             '<option value="Peek">Peek</option>' +
             '<option value="Protect">Protect</option>' +
             '<option value="Vig Shot">Vig Shot</option>' +
             '<option value="ITA Shot">ITA Shot</option>' +
             '</select></td>' +
-            '<td><input type="text" name="actiontextname[' + actionCount + ']" id="actiontextname' + actionCount + '" value="" placeholder="Enter name here"></td>' +
+            '<td><input type="text" name="actiontextname[' + actionCount + ']" id="actiontextname' + actionCount + '" value="" placeholder="Or enter other name here"></td>' +
             '<td><input type="text" name="actiontarget[' + actionCount + ']" id="actiontarget' + actionCount + '" value="" placeholder="Enter name here" required></td>' +
             '<td><select id="nightorday[' + actionCount + '" name="nightorday[' + actionCount + ']" required>' +
-            '<option value="Night">Night</option>' +
-            '<option value="Day">Day</option>' +
+            '<option value="0">Night</option>' +
+            '<option value="1">Day</option>' +
             '</select></td>' +
             '<td><input type="number" name="whichnightorday[' + actionCount + ']" id="whichnightorday' + actionCount + '" value="0" min="0" max="500" required></td>' +
             '<td><button class="button btn-danger" id="removeaction' + actionCount + '" name="removeaction[' + actionCount + ']" onclick="removeAction(' + actionCount + ')">X</button></td>'
