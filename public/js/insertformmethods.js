@@ -121,17 +121,17 @@ function addPlayerSlot() {
             '<td><input type="text" name="slotrole[' + slotCount + ']" id="slotrole' + slotCount + '" value="Vanilla" placeholder="Enter role name here" required></td>' +
             '<td><select id="slotstatus' + slotCount + '" name="slotstatus[' + slotCount + ']" required>' +
             '<option value="1">Survived</option>' +
-            '<option value="2">Lynched</option>' +
-            '<option value="3">Night killed by Mafia or Third Party</option>' +
-            '<option value="4">Night killed by Town</option>' +
-            '<option value="5">Day killed by Mafia or Third Party</option>' +
-            '<option value="6">Day killed by Town</option>' +
-            '<option value="7">Modkilled</option>' +
-            '<option value="8">In-Thread Attack</option>' +
-            '<option value="9">Killed in event</option>' +
-            '<option value="10">Suicide</option>' +
-            '<option value="11">Endgamed</option>' +
-            '<option value="12">Conceded</option>' +
+            '<option value="2">Endgamed</option>' +
+            '<option value="3">Conceded</option>' +
+            '<option value="4">Lynched</option>' +
+            '<option value="5">Night killed by Mafia or Third Party</option>' +
+            '<option value="6">Night killed by Town</option>' +
+            '<option value="7">Day killed by Mafia or Third Party</option>' +
+            '<option value="8">Day killed by Town</option>' +
+            '<option value="9">Modkilled</option>' +
+            '<option value="10">In-Thread Attack</option>' +
+            '<option value="11">Killed in event</option>' +
+            '<option value="12">Suicide</option>' +
             '</select></td>' +
             '<td><input type="number" id="endday'+ slotCount +'" name="endday['+ slotCount +']" placeholder="Last day still playing" required></td>' +
             '<td><input type="text" id="alias'+ slotCount +'" name="alias['+ slotCount +']" placeholder="Enter alias/hydra name"></td>' +

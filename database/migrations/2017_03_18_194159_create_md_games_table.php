@@ -21,7 +21,7 @@ class CreateMdGamesTable extends Migration
             $table->integer('game_type')->unsigned();
             $table->boolean('normal_or_turbo');
             $table->integer('game_total_post_count')->unsigned();
-            $table->string('game_description');
+            $table->text('game_description');
             $table->integer('day_length')->unsigned();
             $table->integer('night_length')->unsigned();
             $table->date('game_start_date');

@@ -33,7 +33,7 @@ class InsertGameController extends Controller
             'daylength' => 'required|integer',
             'nightlength' => 'required|integer',
             'gamemodification.*' => 'boolean',
-            'description' => 'max:191|required',
+            'description' => 'max:1000|required',
             'mainhost' => 'max:191|required',
             'hostusername.*' => 'max:191|required',
             'hosttype.*' => 'max:191|required',
